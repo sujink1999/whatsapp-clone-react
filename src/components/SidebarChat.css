@@ -2,23 +2,63 @@
     display: flex;
     padding: 20px;
     cursor: pointer;
-    border-bottom: 1px solid #ebebeb;
+    background-color: #131C21;
+    /* border-top: 1px solid #323739; */
+}
+
+.addNewChat{
+    display: flex;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #323739;
+    color: #B1B3B5;
+    border-radius: 15px;
+    margin-inline: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    /* border-top: 1px solid #323739; */
+}
+
+.addNewChat > h3{
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+}
+
+.sidebarChat__separator{
+    width: 90%;
+    height: 1px;
+    margin: auto;
+    background-color: #3C4247;
 }
 
 .sidebarChat > h3{
     text-align: center;
     width: 100%;
+
 }
 
 .sidebarChat:hover{
-    background-color: #ebebeb;
+    background-color: #323739;
 }
 
 .sidebarChat__info > h2{
     font-size: 16px;
-    margin-bottom: 8px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    color: lightgray;
 }
 
 .sidebarChat__info{
-    margin-left: 15px;
+    margin-left: 14px;
+    color: gray;
 }
+
+.active{
+    background-color: #323739;
+}
+
+/* .sidebarChat__info > p{
+    height: 18px;
+    overflow: hidden;
+} */

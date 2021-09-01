@@ -1,29 +1,32 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Sidebar.css"
-
-import {Avatar, IconButton} from '@material-ui/core'
+import { useParams } from 'react-router';
+import { Avatar, IconButton } from '@material-ui/core'
 import DonutlargeIcon from '@material-ui/icons/DonutLarge'
 import ChatIcon from '@material-ui/icons/Chat'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import {SearchOutlined} from '@material-ui/icons'
+import { SearchOutlined } from '@material-ui/icons'
 import SidebarChat from './SidebarChat';
 
 import db from '../firebase/firebase'
 import { useStateValue } from '../providers/StateProvider';
+import { deepPurple } from '@material-ui/core/colors';
 
 
 function Sidebar(props) {
 
     const [rooms, setRooms] = useState([]);
-    const [{user}, dispatch] = useStateValue();
+    const [activeRoomId, setActiveRoomId] = useState(null)
+    const [{ user }, dispatch] = useStateValue();
+    let roomId;
 
-    useEffect(()=>{
-        db.collection('rooms').onSnapshot((snapshot)=>{
+    useEffect(() => {
+        db.collection('rooms').onSnapshot((snapshot) => {
             setRooms(
-                snapshot.docs.map((doc)=> (
+                snapshot.docs.map((doc) => (
                     {
-                        id : doc.id,
-                        data : doc.data(),
+                        id: doc.id,
+                        data: doc.data(),
                     }))
             )
         })
@@ -33,7 +36,7 @@ function Sidebar(props) {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar src={user?.photoURL}/>
+                <Avatar src={user?.photoURL} />
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutlargeIcon />
@@ -48,16 +51,17 @@ function Sidebar(props) {
             </div>
             <div className="sidebar__search">
                 <div className="sidebar__searchContainer">
-                <SearchOutlined />
-                <input placeholder="Type something here">
-                </input>
+                    <SearchOutlined />
+                    <input placeholder="Type something here">
+                    </input>
                 </div>
             </div>
+
             <div className="sidebar__chats">
-                <SidebarChat addNewChat/>
-                { rooms.map((room)=>
-                    <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+                {rooms.map((room) =>
+                    <SidebarChat key={room.id} id={room.id} setActive={(id) => setActiveRoomId(id)} active={room.id.toString() === activeRoomId} name={room.data.name} />
                 )}
+                <SidebarChat addNewChat />
             </div>
         </div>
     );

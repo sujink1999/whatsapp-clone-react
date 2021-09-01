@@ -2,19 +2,19 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import './Login.css'
 import { auth, provider } from '../firebase/firebase'
-import {useStateValue} from '../providers/StateProvider'
+import { useStateValue } from '../providers/StateProvider'
 import { actionTypes } from '../providers/Reducer';
 
 function Login(props) {
 
-    const [ {}, dispatch] = useStateValue();
+    const [{ }, dispatch] = useStateValue();
 
     const signIn = () => {
         auth.signInWithPopup(provider).then(
             result => {
                 dispatch({
-                    type : actionTypes.SET_USER,
-                    user : result.user,
+                    type: actionTypes.SET_USER,
+                    user: result.user,
                 });
             }
         ).catch(
@@ -31,10 +31,10 @@ function Login(props) {
                     <h1>Sign in to WhatsApp</h1>
                 </div>
                 <Button onClick={signIn}>
-                    Sign In With Google
+                    Sign in with Google
                 </Button>
             </div>
-            
+
         </div>
     );
 }

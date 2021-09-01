@@ -1,5 +1,5 @@
 .login{
-    background-color: #f8f8f8;
+    background-color: #131C21;
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -9,7 +9,8 @@
 .login__container{
     padding: 100px;
     text-align: center;
-    background-color: white;
+    background-color: #323739;
+    color: #B1B3B5;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
@@ -23,6 +24,6 @@
 .login__container > button{
     margin-top: 50px;
     text-transform: inherit !important;
-    background-color: #0a8d48 !important;
+    background-color: #056162 !important;
     color: white;
 }
